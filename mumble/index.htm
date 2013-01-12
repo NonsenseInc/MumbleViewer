@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Mumble Channel Viewer</title>
+		<link rel="icon" href="/favicon.ico" type="image/png">
+		<script type="text/javascript" src="jquery.js"></script>
+		<link rel="stylesheet" href="mumbleChannelViewer.css" type="text/css">
+		<link rel="stylesheet" href="/font.css" type="text/css">
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<script type="text/javascript">
+		function getData() {
+			setTimeout(getData, 1000);
+			$.get('data.php', function(data) {
+				$('#mumbleViewer').html(data);    
+			});
+		}
+
+		$(document).ready(getData());
+		</script>
+	</head>
+	<body>
+		<div id="head">
+			<a href="http://ggaming.de"><img src="logo.png"></a>
+			<a href="http://sourceforge.net/projects/mumble/files/Mumble/1.2.3a/mumble-1.2.3a.msi/download">
+				<img src="document-save.png">
+				Mumble Download
+			</a>
+			<a href="mumble://ggaming.de/?version=1.2.3">
+				<img src="network-wireless.png">
+				Mumble Server
+			</a>
+		</div>
+		<div id="mumbleViewer" class="mumbleViewerIconsDefault mumbleViewerColorBlack">
+		</div>
+	</body>
+</html>

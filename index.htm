@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Mumble Channel Viewer</title>
+		<link rel="icon" href="/favicon.ico" type="image/png">
+		<script type="text/javascript" src="jquery.js"></script>
+		<link rel="stylesheet" href="/font.css" type="text/css">
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<script type="text/javascript">
+			function getData() {
+				var state = [];
+				$('ul:hidden').each(function() {
+					state.push($(this).attr('id'));
+				});
+
+				$.ajax({
+					url: 'data.php', 
+					success: function($data) {$('#mumbleViewer').html($data);},
+					async: false
+				});
+
+				 $.each(state, function(index, value) {
+					$('#' + value).hide();
+					$('#' + value).parent().toggleClass('closed');
+				});
+				
+				$('li').click(function (e) {
+					$(this).children().toggle();
+					$(this).toggleClass('closed');
+					e.stopPropagation();
+				});
+
+				$('ul:empty').parent().addClass('empty');
+
+				$('li.auth').after('<div class=\'auth\'></div>');
+				$('li.mute').after('<div class=\'mute\'></div>');
+				$('li.suppress').after('<div class=\'suppress\'></div>');
+				$('li.deaf').after('<div class=\'deaf\'></div>');
+				$('li.speaking').css('list-style-image', 'url(\'images/talking_on.png\')');
+
+				setTimeout(getData, 1000);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="head">
+			<a href="http://ggaming.de"><img src="logo.png"></a>
+			<a href="http://sourceforge.net/projects/mumble/files/Mumble/1.2.3a/mumble-1.2.3a.msi/download">
+				<img src="document-save.png">
+				Mumble Download
+			</a>
+			<a href="mumble://ggaming.de/?version=1.2.3">
+				<img src="network-wireless.png">
+				Mumble Server
+			</a>
+		</div>
+		<div id="mumbleViewer"></div>
+		<script type="text/javascript">
+			getData();
+			$('#mumbleViewer ul > li > ul').hide();
+			$('#mumbleViewer ul > li > ul').parent().toggleClass('closed');
+			$('li.user').parents('ul').show();
+			$('li.user').parents('ul').parent().toggleClass('closed');
+		</script>
+	</body>
+</html>

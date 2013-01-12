@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Mumble Channel Viewer</title>
+		<link rel="stylesheet"	type="text/css"  href="ext-all.css" />
+		<script type="text/javascript" src="ext-base.js"></script>
+		<script type="text/javascript" src="ext-all.js"></script>
+		<script type="text/javascript" src="channelviewer.js"></script>
+		<script type="text/javascript">
+			Ext.onReady( function(){
+				Ext.QuickTips.init();
+				mainpanel = new Ext.Panel({
+					renderTo: Ext.getBody(),
+					items: [{
+						xtype: "mumblechannelviewer",
+						ref:   "viewer",
+						idleInterval: 5,
+						source_url: "http://ggaming.de/mumble/json.php",
+						imageurl: "http://ggaming.de/mumble/img"
+					}],
+					layout: "fit"
+				});
+				function updateLayout(){
+					viewsize = {
+						width:  Ext.lib.Dom.getViewWidth(),
+						height: Ext.lib.Dom.getViewHeight()
+					};
+					mainpanel.setHeight( viewsize.height - 100 );
+					mainpanel.setWidth(  viewsize.width  - 40 );
+				}
+				updateLayout();
+				Ext.EventManager.onWindowResize(updateLayout);
+			} );
+		</script>
+		<style type="text/css">
+			body {
+				padding: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			<a href="http://sourceforge.net/projects/mumble/files/Mumble/1.2.3a/mumble-1.2.3a.msi/download">
+				Mumble Download
+			</a><br>
+			<a href="mumble://ggaming.de/?version=1.2.3">
+				Mumble Server
+			</a><br>&nbsp;
+		</p>
+	</body>
+</html>

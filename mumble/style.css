@@ -1,0 +1,39 @@
+* {
+	font-family: font, Georgia, serif;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-size: 12pt;
+}
+
+a, img {
+	border: 0;
+}
+
+a {
+	color: #FF5C00;
+}
+
+#head {
+	border-bottom: 5px solid #FF5C00;
+	padding: .5em 1em;
+	background: #4E0000;
+	color: #FF5C00;
+}
+
+#head img {
+	vertical-align: -.5em;
+}
+
+#head a {
+	margin-right: 1em;
+}
+
+#mumbleViewer {
+	/*margin: 1em;
+	border: 1px inset rgb(200,200,200);*/
+	margin: 1em .5em;
+	border: 0;
+}
